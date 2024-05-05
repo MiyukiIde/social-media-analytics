@@ -69,3 +69,13 @@ for page in pages:
 
 df.to_excel("ExtractedReviews.xlsx")
 
+# Read the Excel files into DataFrames
+reviews_df = pd.read_excel("ExtractedReviews.xlsx")
+product_mapping_df = pd.read_excel("ProductMapping.xlsx")
+
+# Merge the DataFrames based on 'ProductId'
+combined_df = pd.merge(reviews_df, product_mapping_df, on='ProductId', how='left')
+
+# Save the merged DataFrame to a new Excel file
+combined_df.to_excel("CombinedReviewsAndProductMapping.xlsx", index=False)
+
